@@ -1,0 +1,41 @@
+[package]
+name = "nbody"
+version = "0.2.0"
+edition = "2021"
+build = "cpp_build.rs"
+
+[profile.dev]
+opt-level = 3
+
+[profile.release]
+opt-level = 3
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+parking_lot = "0.12.1"
+nalgebra = "0.18.1"
+hashbrown = "0.13.2"
+num = "0.4.0"
+seahash = "4.1.0"
+lazy_static = "1.4.0"
+sdl2 = "0.35.2"
+rand = "*"
+cpp = "0.5.4"
+cpp_common = "0.5.4"
+clap = "2.33.0"
+mpi = "0.6.0"
+rayon = "1.2.0"
+
+
+[build-dependencies]
+cpp_build = "0.5"
+
+# cargo run -- -e brute_force -f yes -h 1000 -m benchmark -n 10000 -s 4.0 -t 32 -w 10000
+# /usr/lib64/mpich/bin/
+# mpiexec -n 3 --machinefile cmac  ./target/debug/nbody -t 3 -e mpi_openmp -w 100 -h 100 -s 100
+# cargo run -- -t 3 -e brute_force -m display
+
+
+# export RDMAV_FORK_SAFE=1
+# cargo run -- -m display -n 300 -e openmp
+# to solve this issue: fork() system
